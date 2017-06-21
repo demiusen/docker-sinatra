@@ -1,5 +1,7 @@
 sudo: required
 language: ruby
+notifications:
+    slack: skatdevops:wZR0H2KgT57luLMlT6MGF65i
 services:
 - docker
 before_install:
