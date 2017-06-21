@@ -15,6 +15,6 @@ class HelloWorldTest < Test::Unit::TestCase
 
   def test_it_works
     visit '/'
-    assert page.has_content?('Hello from docker!')
+    assert page.has_content?('Hello from docker, lets try to auto deploy!')
   end
 end
