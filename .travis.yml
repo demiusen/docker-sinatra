@@ -1,7 +1,8 @@
 sudo: required
 language: ruby
 notifications:
-    slack: skatdevops:wZR0H2KgT57luLMlT6MGF65i
+  slack:
+    secure: buNYskp0Hn4uqxEM9Og7AbAJIFK745MWsln67Z2ll764kP11xa8wpaIP647EV+OVnyAbPoMXPvL9xdbPXFWLSzivQJZ34Nvll1GbHteJOjXuO8YU4xvq7lzQUi5Yu8dxY6nxe2MhYqoX5xCnRF57fH0yueS2xWaQn93hQD7R9F/MJC8zyNt0DKXs+gCocQWvFKfvVKpQCQ+fxmpnMVUNnTOue2wbM7haPDxzsVe8/GicZFU8IgmCHsWRT8u2h0KCXCMX96hXd6U/mlurVWATeavFw2u61X5RZ2phnd+zcWrj+nBcWTl2LAS2w7rG5Jfx9d7H/fn0n9lO/QjfONQJdTS2jsWp/8xEIoD2Iu2LzBgVejfo6ns+/4i4sGpv/B69jd6TkazuHAXdAFl8bBtpg5WbaJsIXhiOKb3Wt0Qo6Ied4F3cU1YiTLRXAZErHtmZfb4OO0s0oIwPv9jxpwamWUlUk3eELm0ss//hpvPaSdb2HAzmMXKN3ELn+2n6w2IvG2hbiM+E801ii925K+QSBSZuUN/3tQwNsvGqGN7KkaGGu1lo9vtZ3CbAYsVbyS0/rMAU3rUGCQJfhxZNLL/yRClPKZ/xgO6IAW2cRGHvNOcStRFR83LPajL13nw4D5PASCz8SYJCoeW8TsKNaUnmlbdeWiOoQFiK9M5p3vWWe1Q=
 services:
 - docker
 before_install:
@@ -18,8 +19,9 @@ after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker push demiusen/sinatra
 deploy:
- provider: script
- skip_cleanup: true
- script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key ubuntu@jirasand.aety.io docker/deploy.sh
- on:
-   branch: master
+  provider: script
+  skip_cleanup: true
+  script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key ubuntu@jirasand.aety.io
+    docker/deploy.sh
+  on:
+    branch: master
